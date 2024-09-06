@@ -5,6 +5,7 @@ use std::time::{Duration, Instant};
 use chrono::Local;
 
 mod get_focus;
+mod detect_display_server;
 
 
 
@@ -14,7 +15,7 @@ mod get_focus;
 
 
 fn main() {
-    
+    detect_display_server::detect_display_server();
     // HashMap to store the time spent on each application
     let mut app_times: HashMap<String, Duration> = HashMap::new();
     let mut current_app = get_focus::get_focused_window().unwrap_or_else(|| "Unknown".to_string());
