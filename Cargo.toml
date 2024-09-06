@@ -1,0 +1,13 @@
+[package]
+name = "Rust_Screen_Tracker"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+x11rb = "0.11.1"
+zbus = "3.0"
+chrono = "0.4"
+
+
+
+
