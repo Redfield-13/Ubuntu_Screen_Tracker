@@ -1,0 +1,4 @@
+1- Sum up app time, make a hash set and add the new window id if doesn't exist in the hash set and create a list of durations for the new id, if it exists add the new duration to the list of durations. So, the data structure for this will be a hash set of lists/arrays.
+2- Stop continuous updates in terminal and only print updates when the user types certian commands.
+3- The updates printing should be a whole list of apps used and the total duartion for each one.
+4- Continuous updates should be printed to a log file or something, and should include as much details as possible.
