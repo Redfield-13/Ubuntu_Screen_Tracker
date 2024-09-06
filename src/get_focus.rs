@@ -4,6 +4,7 @@ pub fn get_focused_window() -> Option<String> {
     // Run the xdotool command to get the name of the currently focused window
     let output = Command::new("xdotool")
         .arg("getwindowfocus")
+        .arg("getwindowname")
         .output();
 
     match output {

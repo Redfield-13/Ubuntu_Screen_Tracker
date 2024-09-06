@@ -4,6 +4,7 @@ use std::thread::sleep;
 use std::time::{Duration, Instant};
 use chrono::Local;
 
+
 mod get_focus;
 mod detect_display_server;
 
@@ -20,12 +21,15 @@ fn main() {
     let mut app_times: HashMap<String, Duration> = HashMap::new();
     let mut current_app = get_focus::get_focused_window().unwrap_or_else(|| "Unknown".to_string());
     let mut start_time = Instant::now();
-
+    
     println!("Starting application tracking...");
 
     loop {
         // Sleep for 1 second before polling again
         sleep(Duration::from_secs(1));
+
+        // let serialized_data = serde_json::to_string(&app_times).unwrap();
+        // println!("{serialized_data}");
 
         // Get the currently focused window
         let new_app: String = get_focus::get_focused_window().unwrap_or_else(|| "Unknown".to_string());
@@ -35,14 +39,19 @@ fn main() {
             // Calculate the time spent on the previous window
             let elapsed = start_time.elapsed();
             println!(
-                "{} -> Time spent on '{}': {:.2?}",
+                "{} -> Time spent on '{}': {:.2?} on this session: ",
                 Local::now().format("%Y-%m-%d %H:%M:%S"),
                 current_app,
                 elapsed
             );
+            
 
             // Add the time to the HashMap
             *app_times.entry(current_app.clone()).or_insert(Duration::new(0, 0)) += elapsed;
+            println!("Total Time Spent on '{}': {:.2?}", current_app, app_times[&current_app]);
+            println!("\n");
+            println!("______________________________________________________");
+            println!("\n");
 
             // Switch to the new window and reset the timer
             current_app = new_app;
