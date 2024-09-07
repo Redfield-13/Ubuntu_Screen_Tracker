@@ -1,7 +1,10 @@
+TODO_0X: The app currently operates on the "xdotool" shell commands, at some point it should implement this functionality on its own.
+
 TODO_02: Stop continuous updates in terminal and only print updates when the user types certian commands.
 TODO_03: The updates printing should be a whole list of apps used and the total duartion for each one.
 TODO_04: Continuous updates should be printed to a log file or something, and should include as much details as possible.
 
+TODO_06: The current logic on can get the windows name and the actual app names, so if an app changes the window name when moving to other tab, the new duration is added as a new app duration and not to the orginal app. THIS NEEDS TO BE FIXED.
 
 
 
@@ -9,6 +12,8 @@ TODO_04: Continuous updates should be printed to a log file or something, and sh
 ############ DONE ############
 TODO_05: Add detailed data for app duration and also each window duration
 ############ DONE ############
+
+----------------------------------------------------------------------------------------
 
 ############ DONE ############
 TODO_01: Sum up app time, make a hash set and add the new window id if doesn't exist in the hash set and create a list of durations for the new id, if it exists add the new duration to the list of durations. So, the data structure for this will be a hash set of lists/arrays.
