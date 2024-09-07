@@ -18,10 +18,11 @@ mod terminal_formatting;
 
 fn main() {
     detect_display_server::detect_display_server();
-    // HashMap to store the time spent on each application
+    // HashMap to store the time spent on each window
     let mut app_times: HashMap<String, Duration> = HashMap::new();
     let mut current_window = get_focus::get_focused_window().unwrap_or_else(|| "Unknown".to_string());
     let mut start_time = Instant::now();
+    let mut app_total_times: HashMap<String, Duration> = HashMap::new();
     
     println!("Starting application tracking...");
 
@@ -40,21 +41,26 @@ fn main() {
             // Calculate the time spent on the previous window
             let elapsed = start_time.elapsed();
             terminal_formatting::formatting();
+            println!("{} ->",Local::now().format("%Y-%m-%d %H:%M:%S"));
             println!(
-                "{} -> Time spent on '{}': {:.2?} on this session: ",
-                Local::now().format("%Y-%m-%d %H:%M:%S"),
+                "Time spent on The Window : '{}': on this session: {:.2?}  ",
                 current_window,
                 elapsed
             );
             
             let splited: Vec<&str> = current_window.split("- ").collect();
-            let ser_split = serde_json::to_string(&splited).unwrap();
+            //let ser_split = serde_json::to_string(&splited).unwrap();
             let current_app = String::from(splited[splited.len()-1]);
-            println!("{ser_split}");
-            
-            // Add the time to the HashMap
+
+            // Add the time to the windows HashMap
             *app_times.entry(current_window.clone()).or_insert(Duration::new(0, 0)) += elapsed;
-            println!("Total Time Spent on '{}': {:.2?}", current_app, app_times[&current_window]);
+            println!("Total Time Spent on The Window '{}': {:.2?}", current_window, app_times[&current_window]);
+
+            // Add the time to the Apps HashMap
+            *app_total_times.entry(current_app.clone()).or_insert(Duration::new(0, 0)) += elapsed;
+            println!("Total Time Spent on The App '{}': {:.2?}", current_app, app_total_times[&current_app]);
+            
+
            
             
 
