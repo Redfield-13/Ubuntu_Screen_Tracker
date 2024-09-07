@@ -6,3 +6,5 @@ TODO_01: Sum up app time, make a hash set and add the new window id if doesn't e
 TODO_02: Stop continuous updates in terminal and only print updates when the user types certian commands.
 TODO_03: The updates printing should be a whole list of apps used and the total duartion for each one.
 TODO_04: Continuous updates should be printed to a log file or something, and should include as much details as possible.
+
+TODO_05: Add detailed data for app duration and also each window duration
